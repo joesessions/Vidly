@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+@using Vidly.Controllers
+@using Vidly.Models
+@using Vidly.ViewModels
+@model List<Customer>
+
+<body>
+
+@{
+    ViewBag.Title = "CustomersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 >Customers</h2>
+
+@if (Model.Count == 0)
+{
+    <p>We don't have any peeps yet.</p>
+}
+else
+{
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership</th>
+
+        </tr>
+        </thead>
+        <tbody></tbody>
+    <tbody>
+    
+        @{
+
+            var i = 1;
+
+        }
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(@customer.Name, "Details", "Customers",new	{id	=customer.Id}, null)></td>
+                <td>@customer.MembershipType.Name</td> 
+            </tr>
+            i++;
+        }
+        </tbody >
+    </table>
+
+
+}
+    
+</body>
+
+</html>
